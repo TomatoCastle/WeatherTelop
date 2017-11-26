@@ -11,3 +11,9 @@ OnePleaceWether: APIを使用して一つの場所の天気情報を取得する
 
 Wethers: 複数の場所の天気情報をまとめて保つためのクラス。テロップ用の文字列としてまとめて返却できる。
 
+##使用するもの
+
+Apache License 2.0 が適用されたRequestsも使用します。
+
+http://docs.python-requests.org/en/master/ Copyright (c)MMXVII. A Kenneth Reitz Project.
+
