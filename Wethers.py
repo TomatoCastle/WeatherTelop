@@ -2,7 +2,7 @@ import json
 import request
 
 class Wehters:
-    def __init__(self):
+    def __init__(self,uri):
         pass
 
     def get_wether(self):
@@ -23,4 +23,6 @@ class Wehters:
     def __str__(self):
         return None
 
+    def check_uri_type(self,uri):
+        pass
 
