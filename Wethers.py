@@ -1,7 +1,9 @@
 import json
-import requests
+import request
 
-class WehterTelop:
+class Wehters:
     def __init__(self):
         pass
+
+
 
