@@ -17,9 +17,7 @@ class  OnePleaceWether:
         rt = {}
         rt['location'] = self.__wether_api_dict['location']['city']
         self.insert_today_wether_to_dic(rt)
-        rt['tomorrow'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['telop']
-        rt['tomorrowMaxTmp'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['temperature']['max']['celsius']
-        rt['tomorrowMinTmp'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['temperature']['min']['celsius']
+        self.insert_tomorrow_wether_to_dic(rt)
         return rt
 
     def insert_today_wether_to_dic(self, rt):
