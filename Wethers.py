@@ -7,13 +7,22 @@ class Wethers:
         self.update()
 
     def get_wether(self):
-        return None
+        return self.get_wether_data_from_api()
 
     def get_wether_with_update(self):
-        return None
+        self.update()
+        return self.get_wether_data_from_api()
 
     def get_wether_data_from_api(self):
-        return None
+        rt = {}
+        rt['location'] = self.__wether_api_dict['location']['city']
+        rt['today'] = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]['telop']
+        #rt['todayMaxTmp'] = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]['temperature']['max']['celsius']
+        #rt['todayMinTmp'] = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]['temperature']['min']['celsius']
+        rt['tomorrow'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['telop']
+        rt['tomorrowMaxTmp'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['temperature']['max']['celsius']
+        rt['tomorrowMinTmp'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['temperature']['min']['celsius']
+        return rt
 
     def update(self):
         self.__wether_api_dict = requests.get(self.uri).json()
