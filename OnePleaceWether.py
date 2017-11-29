@@ -16,13 +16,37 @@ class  OnePleaceWether:
     def get_wether_data_from_api(self):
         rt = {}
         rt['location'] = self.__wether_api_dict['location']['city']
-        rt['today'] = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]['telop']
-        #rt['todayMaxTmp'] = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]['temperature']['max']['celsius']
-        #rt['todayMinTmp'] = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]['temperature']['min']['celsius']
+        self.insert_today_wether_to_dic(rt)
         rt['tomorrow'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['telop']
         rt['tomorrowMaxTmp'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['temperature']['max']['celsius']
         rt['tomorrowMinTmp'] = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]['temperature']['min']['celsius']
         return rt
+
+    def insert_today_wether_to_dic(self, rt):
+        today = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]
+        rt['today'] = today['telop']
+        if today['temperature']['max']['celsius'] is None:
+            rt['todayMaxTmp'] = 'NaN'
+        else:
+            rt['todayMaxTmp'] = today['temperature']['max']['celsius']
+
+        if today['temperature']['min']['celsius'] is None:
+            rt['todayMinTmp'] = 'NaN'
+        else:
+            rt['todayMinTmp'] = today['temperature']['min']['celsius']
+
+    def insert_tomorrow_wether_to_dic(self, rt):
+        tomorrow = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]
+        rt['tomorrow'] = tomorrow['telop']
+        if tomorrow['temperature']['max']['celsius'] is None:
+            rt['tomorrowMaxTmp'] = 'NaN'
+        else:
+            rt['tomorrowMaxTmp'] = tomorrow['temperature']['max']['celsius']
+
+        if tomorrow['temperature']['min']['celsius'] is None:
+            rt['tomorrowMinTmp'] = 'NaN'
+        else:
+            rt['tomorrowMinTmp'] = tomorrow['temperature']['min']['celsius']
 
     def update(self):
         self.__wether_api_dict = requests.get(self.uri).json()
