@@ -1,6 +1,6 @@
 import requests
 
-class Wethers:
+class  OnePleaceWether:
     def __init__(self, uri):
         self.check_uri_type(uri)
         self.uri = uri
