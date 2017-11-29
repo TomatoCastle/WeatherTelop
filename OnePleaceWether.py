@@ -25,26 +25,26 @@ class  OnePleaceWether:
     def insert_today_wether_to_dic(self, rt):
         today = list(filter(lambda n: n['dateLabel'] == '今日', self.__wether_api_dict['forecasts']))[0]
         rt['today'] = today['telop']
-        if today['temperature']['max']['celsius'] is None:
-            rt['todayMaxTmp'] = 'NaN'
+        if today['temperature']['max'] is None:
+            rt['todayMaxTmp'] = ''
         else:
             rt['todayMaxTmp'] = today['temperature']['max']['celsius']
 
-        if today['temperature']['min']['celsius'] is None:
-            rt['todayMinTmp'] = 'NaN'
+        if today['temperature']['min'] is None:
+            rt['todayMinTmp'] = ''
         else:
             rt['todayMinTmp'] = today['temperature']['min']['celsius']
 
     def insert_tomorrow_wether_to_dic(self, rt):
         tomorrow = list(filter(lambda n: n['dateLabel'] == '明日', self.__wether_api_dict['forecasts']))[0]
         rt['tomorrow'] = tomorrow['telop']
-        if tomorrow['temperature']['max']['celsius'] is None:
-            rt['tomorrowMaxTmp'] = 'NaN'
+        if tomorrow['temperature']['max'] is None:
+            rt['tomorrowMaxTmp'] = ''
         else:
             rt['tomorrowMaxTmp'] = tomorrow['temperature']['max']['celsius']
 
-        if tomorrow['temperature']['min']['celsius'] is None:
-            rt['tomorrowMinTmp'] = 'NaN'
+        if tomorrow['temperature']['min'] is None:
+            rt['tomorrowMinTmp'] = ''
         else:
             rt['tomorrowMinTmp'] = tomorrow['temperature']['min']['celsius']
 
