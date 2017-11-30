@@ -50,7 +50,7 @@ class  OnePleaceWether:
         self.__wether_api_dict = requests.get(self.uri).json()
 
     def __eq__(self, other):
-        return None
+        return other.get_wether() == self.get_wether()
 
     def __str__(self):
         dic = self.get_wether()
