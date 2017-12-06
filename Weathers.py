@@ -2,19 +2,22 @@ import OnePleaceWether
 
 class Weathers:
     def __init__(self):
-        pass
+        self.Weathers = []
 
     def __str__(self):
         return None
 
-    def add_weather(self):
-        pass
+    def add_weather(self,uri):
+        self.Weathers.append(OnePleaceWether.OnePleaceWether(uri))
 
-    def get_weather(self):
-        return None
+    def all_get_weather(self):
+        rtn = []
+        for i in range(0,len(self.Weathers)):
+            rtn.append(self.get_weather(i))
+        return rtn
 
     def get_weather(self, i):
-        return None
+        return self.Weathers[i].get_wether()
 
     def __getitem__(self):
         return None
