@@ -5,6 +5,7 @@ class Weathers:
         self.Weathers = []
 
     def __str__(self):
+        #todo
         return None
 
     def add_weather(self,uri):
@@ -19,8 +20,14 @@ class Weathers:
     def get_weather(self, i):
         return self.Weathers[i].get_wether()
 
-    def __getitem__(self):
-        return None
+    def __len__(self):
+        return len(self.Weathers)
 
-    def __eq__(self):
-        return None
+    def __getitem__(self, item):
+        return self.Weathers[item].get_wether()
+
+    def __eq__(self, other):
+        if not isinstance(other, Weathers):
+            return False
+        return self.Weathers == other.Weathers
+
