@@ -5,10 +5,12 @@ class Weathers:
         self.Weathers = []
 
     def __str__(self):
-        #todo
-        return None
+        rtn = ''
+        for i in self.Weathers:
+            rtn += str(i)
+        return rtn
 
-    def add_weather(self,uri):
+    def add_weather(self, uri):
         self.Weathers.append(OnePleaceWether.OnePleaceWether(uri))
 
     def all_get_weather(self):
